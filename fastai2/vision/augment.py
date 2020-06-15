@@ -285,7 +285,7 @@ def _grid_sample(x, coords, mode='bilinear', padding_mode='reflection', align_co
         d = min(x.shape[-2]/coords.shape[-2], x.shape[-1]/coords.shape[-1])/2
         # If we're resizing up by >200%, and we're zooming less than that, interpolate first
         if d>1 and d>z:
-            x = F.interpolate(x, scale_factor=1/d, mode='area')
+            x = F.interpolate(x, scale_factor=1/d, mode='area', recompute_scale_factor=True)
     return F.grid_sample(x, coords, mode=mode, padding_mode=padding_mode, align_corners=align_corners)
 
 # Cell
