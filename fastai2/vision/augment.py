@@ -288,7 +288,7 @@ def _grid_sample(x, coords, mode='bilinear', padding_mode='reflection', align_co
             # Pytorch > v1.4.x needs an extra argument when calling nn.functional.interpolate to preserve previous behaviour
             if (int(torch.__version__[0:3].translate({ord('.'): None})) > 14):
                 x = F.interpolate(x, scale_factor=1/d, mode='area', recompute_scale_factor=True)
-                else:
+            else:
                 x = F.interpolate(x, scale_factor=1/d, mode='area')
     return F.grid_sample(x, coords, mode=mode, padding_mode=padding_mode, align_corners=align_corners)
 
