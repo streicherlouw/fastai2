@@ -286,7 +286,7 @@ def _grid_sample(x, coords, mode='bilinear', padding_mode='reflection', align_co
         # If we're resizing up by >200%, and we're zooming less than that, interpolate first
         if d>1 and d>z:
             # Pytorch > v1.4.x needs an extra argument when calling nn.functional.interpolate to preserve previous behaviour
-            if (int(torch.__version__[0:3].translate({ord('.'): None})) > 14):
+            if (int(torch.__version__[0:4].replace(".", "")) > 14):
                 x = F.interpolate(x, scale_factor=1/d, mode='area', recompute_scale_factor=True)
             else:
                 x = F.interpolate(x, scale_factor=1/d, mode='area')
